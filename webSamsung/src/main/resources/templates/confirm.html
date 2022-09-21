@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns="http://www/w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+
+<head>
+    <title>Samsung Shop</title>
+</head>
+
+<body>
+    <div align="center" style="padding-top: 150px">
+        <form action="#" th:action="@{/save}" th:object="${register}" method="post">
+            <h1>Đăng Ký</h1>
+            <table border="1" cellpadding="10">
+                <tr>
+                    <td>Họ tên:</td>
+                    <td><input type="text" size="30" /></td>
+                </tr>
+                <tr>
+                    <td>Ngày sinh: </td>
+                    <td><input type="date" size="50" /></td>
+
+                </tr>
+                <tr>
+                    <td>Giới tính:</td>
+                    <td>
+                        <input type="radio" value="Nam" name="rdo" />Nam
+                        <input style="margin-left: 60px;" type="radio" value="Nữ" name="rdo" />Nữ
+                    </td>
+                </tr>
+                <tr>
+                    <td>Số điện thoại: </td>
+                    <td>
+                        <input type="text" name="sdt" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>Thành phố/Tỉnh</td>
+                    <td>
+                        <select>
+                            <option>Hà Nội</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Quận/Huyện</td>
+                    <td><select>
+                            <option>Đống Đa</option>
+                            <option>Cầu Giấy</option>
+                        </select></td>
+
+                </tr>
+                <tr>
+                    <td colspan="2" align="center" style="padding-top: 30px">
+                        <button type="submit">Xác nhận</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>
