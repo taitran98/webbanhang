@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form method = "post" action = "#" th:action = "@{/addcategory}" th:object = "${category}">
+        <labe>
+            cat id:
+        </labe>
+        <input type ="text" name = "catid" id = "catid" th:field = *{catid}>
+        <br>
+        <labe>
+            cat name:
+        </labe>
+        <input type ="text" name = "catname" id = "catname" th:field = *{catname}>
+        <br>
+        <button type = "submit">Submit</button>
+    </form>
+</body>
+</html>
