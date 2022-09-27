@@ -18,14 +18,32 @@ public class banhangcontroller {
 	private webbanhangDAO dao;
 
 	@RequestMapping("/")
-	public String index() {
+	public String index(Model model) {
+		model.addAttribute("login", new Login());
 		return "index";
 
 	}
 
 	@RequestMapping("/login")
-	public String login() {
+	public String Login(@Validated @ModelAttribute("login") Login login, BindingResult bindingResult, Model model) {
+
+		model.addAttribute("login", new Login());
+		
 		return "login";
+
+	}
+
+	@PostMapping("/formLogin")
+	public String formLogins(@Validated  @ModelAttribute("login") Login login, BindingResult bindingResult, Model model)
+	{
+		model.addAttribute("login", login);
+		if (bindingResult.hasErrors()) {
+			return "login";
+		}
+		else 
+		{
+			return "index";
+		}
 	}
 
 	@RequestMapping("/confirm")
@@ -41,17 +59,27 @@ public class banhangcontroller {
 		return "newUser";
 
 	}
+
 	@PostMapping("/registerUser")
-	public String submitform(@Validated @ModelAttribute("register") Register register, BindingResult bindingResult,
+	public String confirm(@Validated @ModelAttribute("register") Register register, BindingResult bindingResult,
 			Model model) {
 		model.addAttribute("register", register);
+
 		if (bindingResult.hasErrors()) {
 			return "newUser";
-			
 		} else {
 			dao.register(register);
 			return "confirm";
 		}
-	}	
+
+	}
+
+	@RequestMapping(value = "/update", method = RequestMethod.POST)
+	public String update(@ModelAttribute("register") Register register) {
+
+		dao.update(register);
+
+		return "redirect:/";
+	}
 
 }

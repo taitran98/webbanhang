@@ -1,30 +1,50 @@
 <!DOCTYPE html>
-<html xmlns="http://www/w3.org/1999/xhtml"
-	xmlns:th="https://www.thymeleaf.org">
+<html xmlns="http://www/w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+
 <head>
-<title>Samsung Shop</title>
+	<title>Samsung Shop</title>
+	<script>
+		function checkpassword(form) {
+			pass1 = form.pass1.value;
+			confirm1 = form.confirm1.value
+
+			if (pass1 != confirm1) {
+				alert("Password did not match: Please try again...")
+				return false;
+			}
+			else {
+				alert("Password Match: Welcome to GeeksforGeeks!")
+				return true;
+			}
+		}
+	</script>
+	
 </head>
+
 <body>
 	<div align="center" style="padding-top: 150px">
-		<form action="#" th:action="@{/registerUser}" th:object="${register}" method="post">
+		<form action="#" th:action="@{/registerUser}" th:object="${register}" method="post"
+			onsubmit="checkpassword(this)">
 			<h1>Đăng Ký</h1>
 			<table border="0" cellpadding="10">
 				<tr>
 					<td>Email:</td>
-					<td><input type="email" size="30" name="email" th:field="*{email}"/></td>
-					<span th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email erorr</span><br />
+					<td><input type="email" size="30" name="email" th:field="*{email}" /></td>
+					<td><span th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email erorr</span><br /> </td>
 				</tr>
 				<tr>
 					<td>Mật khẩu:</td>
-					<td><input type="password" size="30"  th:field="*{pass}"/></td>
-					<span th:if="${#fields.hasErrors('pass')}" th:errors="*{pass}">Password erorr</span><br />
+					<td><input type="password" size="30" name="pass" th:field="*{pass}" /></td>
+					<td><span th:if="${#fields.hasErrors('pass')}" th:errors="*{pass}">Password erorr</span><br /></td>
 				</tr>
 				<tr>
 					<td>Xác nhận mật khẩu:</td>
-					<td><input type="password" size="30" name="confirm" /></td>
+					<td><input type="password" size="30" name="confirmpass" th:field="*{confirmpass}" /></td>
+					<td><span th:if="${#fields.hasErrors('confirmpass')}" th:errors="*{confirmpass}">Password
+							erorr</span><br /></td>
 				</tr>
 				<tr>
-					<td colspan="2" align="center" style="padding-top: 30px"  >
+					<td colspan="3" align="center" style="padding-top: 30px">
 						<button type="submit">Đăng ký</button>
 					</td>
 				</tr>

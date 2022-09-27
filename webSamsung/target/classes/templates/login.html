@@ -5,24 +5,60 @@
 <head>
 <title>Samsung Shop</title>
 </head>
+<style type="text/css">
+	label {
+		display: inline-block;
+		width: 200px;
+		margin: 5px;
+		text-align: left;
+	}
+
+	input[type=text],
+	input[password],
+	select {
+		display: inline-block;
+		width: 200px;
+	}
+
+	input[type=radio] {
+		margin-left: 45px;
+	}
+
+	input[type=checkbox] {
+		margin-right: 190px;
+	}
+
+	button {
+		padding: 5px;
+		margin: 10px;
+	}
+
+	span {
+		color: rgb(241, 133, 14);
+		font-style: italic;
+		margin: 10px;
+	}
+</style>
 <body>
 	<div align="center" style="padding-top: 150px">
-		<form action="">
+		<form action="/formLogin" th:object="${login}" method="post">
 			<h2>Đăng nhập</h2>
 			<table border="0" cellpadding="10">
 				<tr>
 					<td>Email:</td>
-					<td><input type="text" size="30" /></td><br>
+					<td><input type="email" size="30" name="email" th:field="*{email}" /></td><br>
+					<td><span th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email erorr</span><br /> </td>
 				</tr>
 				<tr>
 					<td>Mật khẩu:</td>
-					<td><input type="password" size="30" /></td>
+					<td><input type="password" size="30" th:field="*{password}" name="password" /></td>
+					<td><span th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password erorr</span><br /> </td>
 				</tr>
 				<tr>
 					<td style="padding-top: 30px" align="right"><a href="/reset">Quên mật khẩu?</a></td>
 				</tr>
 				<tr>
-					<td colspan="2" align="center"><input type="button" value="Đăng nhập" style="margin-top: 50px"></td>
+					<td colspan="2" align="center"><input type="submit" value="Đăng nhập" style="margin-top: 50px"></td>
 				</tr>
 			</table>
 

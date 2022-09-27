@@ -6,37 +6,41 @@
 </head>
 
 <body>
-    <div align="center" style="padding-top: 150px">
-        <form action="#" th:action="@{/save}" th:object="${register}" method="post">
+    <div align="center" style="padding-top: 100px">
+        <form action="#" th:action="@{/update}" th:object="${register}" method="post">
             <h1>Đăng Ký</h1>
-            <table border="1" cellpadding="10">
+            <table border="0" cellpadding="10">
+                <tr>
+					<td>Email: </td>
+					<td><input size="30" type="text" th:field="*{email}" readonly style="background-color: #e9e0e0;"/></td>
+				</tr>
                 <tr>
                     <td>Họ tên:</td>
-                    <td><input type="text" size="30" /></td>
+                    <td><input type="text" size="30" th:field="*{name}" /></td>                   
                 </tr>
                 <tr>
                     <td>Ngày sinh: </td>
-                    <td><input type="date" size="50" /></td>
-
+                    <td><input type="date" size="50" th:field="*{dob}" /></td>
                 </tr>
                 <tr>
                     <td>Giới tính:</td>
                     <td>
-                        <input type="radio" value="Nam" name="rdo" />Nam
-                        <input style="margin-left: 60px;" type="radio" value="Nữ" name="rdo" />Nữ
+                        <input type="radio" value="Nam" th:field="*{gender}"/>Nam
+                        <input style="margin-left: 60px;" type="radio" value="Nữ" th:field="*{gender}"/>Nữ
                     </td>
                 </tr>
                 <tr>
                     <td>Số điện thoại: </td>
                     <td>
-                        <input type="text" name="sdt" />
+                        <input type="text" name="phone" size="30" th:field="*{phone}" />
                     </td>
                 </tr>
                 <tr>
                     <td>Thành phố/Tỉnh</td>
                     <td>
-                        <select>
+                        <select >
                             <option>Hà Nội</option>
+                            <option>Thái Nguyên</option>
                         </select>
                     </td>
                 </tr>
@@ -46,11 +50,19 @@
                             <option>Đống Đa</option>
                             <option>Cầu Giấy</option>
                         </select></td>
-
                 </tr>
                 <tr>
-                    <td colspan="2" align="center" style="padding-top: 30px">
+                    <td>Địa chỉ cụ thể: </td>
+                    <td>
+                        <input type="text" name="address" size="30" th:field="*{address}" />
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center" style="padding-top: 30px">
                         <button type="submit">Xác nhận</button>
+                    </td>
+                    <td align="center" style="padding-top: 30px">
+                        <button type="reset">Nhập lại</button>
                     </td>
                 </tr>
             </table>

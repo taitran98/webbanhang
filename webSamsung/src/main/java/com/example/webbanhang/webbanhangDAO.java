@@ -1,10 +1,10 @@
 package com.example.webbanhang;
 
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,6 +24,14 @@ public class webbanhangDAO {
 		BeanPropertySqlParameterSource param = new BeanPropertySqlParameterSource(register);
 		
 		insert.execute(param);
+	}
+
+	public void update(Register register) {
+		String sql = "update customer set name=:name , dob=:dob, gender=:gender, phone=:phone, address=:address, district=:district, city=:city where email=:email";
+		BeanPropertySqlParameterSource param = new BeanPropertySqlParameterSource(register);
+		NamedParameterJdbcTemplate template = new NamedParameterJdbcTemplate(jdbcTemplate);
+		
+		template.update(sql, param);
 	}
 
 }

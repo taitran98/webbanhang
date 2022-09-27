@@ -6,12 +6,18 @@
 </head>
 <body>
 	<div align="center">
-		<form action="">
+		<form action="" th:object = "${login}">
 			<h1>😍 Trang chủ 💕</h1>
 			<table>
-				<tr>
+				<tr th:if = "${login.email == null}">
 					<td><a href="/registerUser">Đăng ký 🔑</td>
 					<td style="padding-left: 50px"><a href="/login">Đăng nhập ✔</td>
+				</tr>
+				<tr th:if = "${login.email != null}">
+					<td>Xin chào! </td>
+					<td><input size="30"  th:field="*{email}" readonly style="background-color: #e9e0e0;"/></td>
+					<td><a type="submit" href="/">Đăng xuất</a>
+					</td>
 				</tr>
 			</table>
 		</form>
